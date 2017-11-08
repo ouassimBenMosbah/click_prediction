@@ -1,6 +1,10 @@
 # click_prediction
 Predict user clicks on ads based on a dataset of real world data
 
+## Dependencies
+* You should install ```sbt``` [Installation guide](http://www.scala-sbt.org/download.html)
+* spark-submit should be in your environnement path.
+
 ## Usage
 On the root of the project you should run:
 
