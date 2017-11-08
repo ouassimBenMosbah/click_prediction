@@ -1,7 +1,6 @@
 import org.apache.spark.ml.Pipeline
 import org.apache.spark.ml.feature.{StringIndexer, OneHotEncoder, VectorAssembler}
 import org.apache.spark.ml.classification.LogisticRegression
-import org.apache.spark.ml.evaluation.BinaryClassificationEvaluator
 import org.apache.spark.sql.DataFrame
 import scala.util.matching.Regex
 import org.joda.time.format.DateTimeFormat
@@ -113,8 +112,8 @@ val lr = new LogisticRegression().setLabelCol("label").setFeaturesCol("features"
 val lrModel = lr.fit(trainingData.select("label", "features", "classWeightCol"))
 
 /* --------- Do the predictions --------- */
-val test = sqlContext.jsonFile("test_data.json")
+val test = sqlContext.jsonFile("test.json")
 val testData = preprocess(test, false).select("appOrSite", "bidfloor", "city", "exchange", "impid", "interests", "media", "network", "os", "publisher","timestamp", "type", "user", "features")
-val predictions = lrModel.transform(testData).select("appOrSite", "bidfloor", "city", "exchange", "impid", "interests", "media", "network", "os", "publisher", "timestamp", "type", "user", "prediction")
+val predictions = lrModel.transform(testData).select("prediction", "appOrSite", "bidfloor", "city", "exchange", "impid", "interests", "media", "network", "os", "publisher", "timestamp", "type", "user")
 
 predictions.coalesce(1).write.format("com.databricks.spark.csv").option("header", "true").save("result_predictions")
