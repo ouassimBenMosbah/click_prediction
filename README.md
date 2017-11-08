@@ -9,7 +9,7 @@ Predict user clicks on ads based on a dataset of real world data
 On the root of the project you should run:
 
 ```
-./run.sh path/to/train/data.json path/to/train/data.json path/to/test/data.json
+./run.sh path/to/train/data.json path/to/test/data.json
 ```
 
 The script wil execute those 2 commands.
@@ -22,6 +22,7 @@ nb: Be aware that you don't already have a directory called 'result_predictions'
 
 ## Example
 For example you can put train.json and a test.json in the root directory of this project and run:
+
 ```
 ./run.sh data-students.json test.json
 ```
