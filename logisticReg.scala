@@ -102,7 +102,7 @@ def balanceDataset(dataset: DataFrame): DataFrame = {
 
 /* ------------------------ MAIN ------------------------ */ 
 /* ------------ Getting the data ----------- */
-val train = sqlContext.jsonFile("train_data.json")
+val train = sqlContext.jsonFile("data-students.json")
 
 /* ---- Splitting train and test data ---- */
 val trainingDataUnbalanced = preprocess(train, true)
