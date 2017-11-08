@@ -111,7 +111,7 @@ object PredictClick {
     /* ----------------------------------------- */
     /* ------------ Getting the data ----------- */
     /* ----------------------------------------- */
-    val train = spark.read.json("data-students.json")
+    val train = spark.read.json(args(0))
 
 
     /* ----------------------------------------- */
@@ -132,7 +132,7 @@ object PredictClick {
     /* ----------------------------------------- */
     /* ----------- Do the predictions ---------- */
     /* ----------------------------------------- */
-    val test = spark.read.json("test.json")
+    val test = spark.read.json(args(1))
     val testData = preprocess(test, false).select("appOrSite", "bidfloor", "city", "exchange", "impid", "interests", "media", "network", "os", "publisher","timestamp", "type", "user", "features")
     val predictions = lrModel.transform(testData).select("prediction", "appOrSite", "bidfloor", "city", "exchange", "impid", "interests", "media", "network", "os", "publisher", "timestamp", "type", "user")
 
